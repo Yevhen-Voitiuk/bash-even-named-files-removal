@@ -1,0 +1,13 @@
+#!/bin/bash
+for file in ./*.* # Excluding bash script and folders. Targeting files
+do
+	filename=$(basename -- $file)
+	filename=${filename%%.*}
+	filename=${filename//-}
+	calculation="$((filename % 2))"
+    if [ "$calculation" -eq "0" ]; then
+    	echo "Removing an even-numbered file " "$file" " ..."
+    	rm "$file"
+    fi
+done
+echo "Removed all even-numbered files!"
